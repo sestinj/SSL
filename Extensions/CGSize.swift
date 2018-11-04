@@ -13,4 +13,8 @@ extension CGSize {
     init(_ size: Int) {
         self.init(width: size, height: size)
     }
+    
+    static func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
+        return CGSize(width: lhs.width*rhs, height: lhs.height*rhs)
+    }
 }

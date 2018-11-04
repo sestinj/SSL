@@ -18,4 +18,8 @@ extension CGPoint {
         let yPos = CGFloat(low: inside.minY, high: inside.maxY)
         self.init(x: xPos, y: yPos)
     }
+    
+    static func *(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        return CGPoint(x: lhs.x*rhs, y: lhs.y*rhs)
+    }
 }

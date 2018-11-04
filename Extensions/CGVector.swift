@@ -15,4 +15,8 @@ extension CGVector {
         let dy = to.y - from.y
         self.init(dx: dx*multiplier, dy: dy*multiplier)
     }
+    
+    static func *(lhs: CGVector, rhs: CGFloat) -> CGVector {
+        return CGVector(dx: lhs.dx*rhs, dy: lhs.dy*rhs)
+    }
 }
