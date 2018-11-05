@@ -29,4 +29,11 @@ extension CGRect {
         // 1=topleft, 2=topright, 3=bottomleft, 4=bottomright
         return [CGPoint(x: self.minX, y: self.minY), CGPoint(x: self.maxX, y: self.minY), CGPoint(x: self.minX, y: self.maxY), CGPoint(x: self.maxX, y: self.maxY)]
     }
+    
+    static func +(lhs: CGRect, rhs: CGSize) -> CGRect {
+        return CGRect(x: lhs.origin.x, y: lhs.origin.y, width: lhs.width + rhs.width, height: lhs.height + rhs.width)
+    }
+    static func +(lhs: CGRect, rhs: CGPoint) -> CGRect {
+        return CGRect(x: lhs.origin.x + rhs.x, y: lhs.origin.y + rhs.y, width: lhs.width, height: lhs.height)
+    }
 }
