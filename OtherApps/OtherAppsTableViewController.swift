@@ -10,7 +10,6 @@ import UIKit
 
 class OtherAppsTableViewController: UITableViewController {
     
-    
     func iTunes() {
         let urlString = URL(string: "https://itunes.apple.com/search?term=sam+sesti&entity=software&attribute=softwareDeveloper")
         if let url = urlString {
@@ -46,6 +45,11 @@ class OtherAppsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.title = "More By Z Studios"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(done))
+        
         self.tableView.register(OtherAppsTableViewCell.self, forCellReuseIdentifier: "otherAppsCellReuseIdentifier")
         iTunes()
     }

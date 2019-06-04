@@ -8,11 +8,13 @@
 
 import UIKit
 
-class OtherAppsButton: UIButton {
+class OtherAppsButton: UIButton, UINavigationControllerDelegate {
     var parentVC: UIViewController!
     @objc func presentOtherApps() {
         let table = OtherAppsTableViewController()
-        parentVC.present(table, animated: true, completion: nil)
+        let navVC = UINavigationController(rootViewController: table)
+        navVC.delegate = self
+        parentVC.present(navVC, animated: true, completion: nil)
     }
     func setUp(parentVC: UIViewController) {
         self.parentVC = parentVC

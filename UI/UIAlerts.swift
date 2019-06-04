@@ -23,3 +23,9 @@ func alert(title: String, hasTextField: Bool, message: String?, completion: @esc
     alert.addAction(doneAction)
     return alert
 }
+
+extension UIAlertController {
+    func addCancel(title: String = "Cancel") {
+        self.addAction(UIAlertAction(title: title, style: .cancel, handler: nil))
+    }
+}

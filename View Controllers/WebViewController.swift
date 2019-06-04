@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController, UIGestureRecognizerDelegate {
-    var webView: UIWebView!
+    var webView: WKWebView!
     var url: String!
     let action = #selector(exit)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webView = UIWebView(frame: view.frame)
+        webView = WKWebView(frame: view.frame)
         view.addSubview(webView)
         let request = URLRequest(url: URL(string: url)!)
-        webView.loadRequest(request)
+        webView.load(request)
         
         var num: CGFloat = 22.0
         if X() {

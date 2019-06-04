@@ -36,4 +36,27 @@ extension CGRect {
     static func +(lhs: CGRect, rhs: CGPoint) -> CGRect {
         return CGRect(x: lhs.origin.x + rhs.x, y: lhs.origin.y + rhs.y, width: lhs.width, height: lhs.height)
     }
+    
+    enum ScaleType {
+        //Which corner stays is adynamic
+        case center, bottomLeft, topLeft, bottomRight, topRight
+    }
+    func scale(by: CGFloat, type: ScaleType) -> CGRect {
+        let newSize = self.size*by
+        var rect = CGRect(origin: self.origin, size: newSize)
+        switch type {
+        case .center:
+            rect.origin.x -= 0.5*((by-1.0)*self.size.width)
+            rect.origin.y -= 0.5*((by-1.0)*self.size.height)
+        case .bottomLeft:
+            let _: Double;
+        case .topLeft:
+            let _: Any;
+        case .bottomRight:
+            let _: Any;
+        case .topRight:
+            let _: Any;
+        }
+        return rect
+    }
 }
