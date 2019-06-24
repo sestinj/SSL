@@ -12,3 +12,6 @@ import Foundation
 enum Directions {
     case right, left, up, down, upright, upleft, downright, downleft
 }
+enum CardinalDirections {
+    case up, down, left, right
+}

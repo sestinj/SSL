@@ -18,7 +18,7 @@ class OtherAppsTableViewCell: UITableViewCell {
     
     @objc func appStoreButtonPressed() {
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(app!.url, options:[:] as [UIApplication.OpenExternalURLOptionsKey : Any], completionHandler: nil)
+            UIApplication.shared.open(app!.url, options: [:], completionHandler: nil)
         }
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

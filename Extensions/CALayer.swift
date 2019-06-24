@@ -9,20 +9,21 @@
 import Foundation
 import UIKit
 
-
 fileprivate var isFlipping = false
 extension CALayer {
-    func animate(_ keyPath: String, from: Any, duration: Double, autoreverses: Bool = false, timingFunction: CAMediaTimingFunctionName? = nil) {
+    func animate(_ keyPath: String, from: Any, duration: Double, autoreverses: Bool = false, timingFunction: CAMediaTimingFunctionName? = nil, _ completion: (() -> Void)? = nil) {
         let animation = CABasicAnimation(keyPath: keyPath)
         animation.fromValue = from
         animation.toValue = self.value(forKey: keyPath)
         animation.duration = duration
         animation.autoreverses = autoreverses
-        if let timingFunction = timingFunction {
-            animation.timingFunction = CAMediaTimingFunction(name: timingFunction)
-        } else {
-            animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        animation.timingFunction = CAMediaTimingFunction(name: timingFunction ?? CAMediaTimingFunctionName(rawValue: "linear"))
+        if let completion = completion {
+            let _ = Timer(timeInterval: duration, repeats: autoreverses) { (_) in
+                completion()
+            }
         }
+        
         self.add(animation, forKey: keyPath)
     }
     
@@ -50,7 +51,7 @@ extension CALayer {
         masksToBounds = true
     }
     
-    func addShadowLayer(_ offset: CGFloat) {
+    func addShadowLayer(_ offset: CGFloat) -> CAShapeLayer {
         guard let sup = self.superlayer else {fatalError("Must add layer to superlayer before adding shadow layer.")}
         let shadowLayer = CAShapeLayer()
         shadowLayer.path = CGPath(roundedRect: self.frame, cornerWidth: self.cornerRadius, cornerHeight: self.cornerRadius, transform: nil)
@@ -63,6 +64,7 @@ extension CALayer {
         //Remove and re-add layer to its superlayer so that it has the same zposition as the shadow, but is on top
         removeFromSuperlayer()
         sup.addSublayer(self)
+        return shadowLayer
     }
     
     func addShadow(_ offset: CGFloat, color: UIColor) {
